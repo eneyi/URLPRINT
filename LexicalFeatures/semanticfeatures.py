@@ -16,7 +16,7 @@ class LexicalSemanticFeature(LexicalUtilities):
             match = pattern.match(host)
             return match is not None
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     '''If a port number is visible in URL String'''
@@ -25,7 +25,7 @@ class LexicalSemanticFeature(LexicalUtilities):
             has_port = self.urlparse.netloc.split(':')
             return len(has_port) > 1 and has_port[-1].isdigit()
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     '''Get the number of encoded characters in URL String'''
@@ -33,7 +33,7 @@ class LexicalSemanticFeature(LexicalUtilities):
         try:
             return '%' in self.url.lower()
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     '''Check for the presence of CLIENT keyword in URL String'''
@@ -41,7 +41,7 @@ class LexicalSemanticFeature(LexicalUtilities):
         try:
             return 'client' in self.url.lower()
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     '''Check for the presence of ADMIN keyword in URL String'''
@@ -49,7 +49,7 @@ class LexicalSemanticFeature(LexicalUtilities):
         try:
             return 'admin' in self.url.lower()
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     '''Check for the presence of SERVER keyword in URL String'''
@@ -57,7 +57,7 @@ class LexicalSemanticFeature(LexicalUtilities):
         try:
             return 'server' in self.url.lower()
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     '''Check for the presence of LOGIN keyword in URL String'''
@@ -65,7 +65,7 @@ class LexicalSemanticFeature(LexicalUtilities):
         try:
             return 'login' in self.url.lower()
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     '''Run Lexical Feature Extractor'''

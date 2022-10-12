@@ -13,7 +13,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len(self.url)
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get Total number of 0-9 digits in URL string'''
@@ -21,7 +21,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url if i.isdigit()])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ##############PUNCTUATION COUNT FEATURES##############
@@ -30,7 +30,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url if i in self.__get_punctuations and i != '/'])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get Total number of encoded characters in URL string'''
@@ -38,7 +38,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url if i == '%'])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get Total number of underscores in URL string'''
@@ -46,7 +46,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url if i == '_'])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get Total number of hyphens in URL string'''
@@ -54,7 +54,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url if i == '-'])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get Total number of periods in URL string'''
@@ -62,7 +62,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url if i == '.'])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get Total number of uppercase characters in URL string'''
@@ -70,16 +70,16 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url if i.isupper()])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get ratio of punctuations to characters in URL string in URL string'''
     def punc_to_char_ratio(self):
-        if  self.url_length() and self.url_length() > 0:
+        if self.url_length() and self.url_length() > 0:
             try:
                 return self.num_puncs() / self.url_length()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -90,7 +90,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_puncs() / self.num_digits()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -101,7 +101,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_digits() / self.url_length()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -111,7 +111,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_capitalizations() / self.num_puncs()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -121,20 +121,20 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_capitalizations() / self.num_digits()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
     ##############PUNCTUATION COUNT FEATURES##############
 
 
-    ###############vows & cons FEATURES #####################
+    ###############VOWEL & CONSONANT FEATURES #####################
     ''' Get Total number of english vows in URL string'''
     def num_vows(self):
         try:
             return len([i for i in self.url.lower() if i in 'aeiou'])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get Total number of english cons in URL string'''
@@ -142,7 +142,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
         try:
             return len([i for i in self.url.lower() if i.isalpha() and i not in 'aeiou'])
         except Exception as e:
-            print(e)
+            self._error_logger(e)
             return None
 
     ''' Get ratio of vows to cons in URL string in URL string'''
@@ -151,7 +151,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_vows() / self.num_cons()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -162,7 +162,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_vows() / self.num_digits()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -173,7 +173,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_vows() / self.num_puncs()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -184,7 +184,7 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_cons() / self.num_digits()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
@@ -195,40 +195,40 @@ class LexicalSynthaticFeature(LexicalUtilities):
             try:
                 return self.num_vows() / self.num_cons()
             except Exception as e:
-                print(e)
+                self._error_logger(e)
                 return None
         else:
             return 0
 
     def vows_to_vows_seq(self):
         counter, vows = 0, self.__get_vows()
-        for i in range(0, len(self.url)):
+        for i in range(1, len(self.url)):
             if self.url[i].isalpha():
-                if self.url[i] in vows and self.url[i + i] in vows:
+                if self.url[i-1] in vows and self.url[i] in vows:
                     counter += 1
         return counter
 
     def vows_to_cons_seq(self):
         counter, vows = 0, self.__get_vows()
-        for i in range(0, len(self.url)):
+        for i in range(1, len(self.url)):
             if self.url[i].isalpha():
-                if self.url[i] in vows and self.url[i + i] not in vows:
+                if self.url[i-1] in vows and self.url[i] not in vows:
                     counter += 1
         return counter
 
     def cons_to_cons_seq(self):
         counter, vows = 0, self.__get_vows()
-        for i in range(0, len(self.url)):
+        for i in range(1, len(self.url)):
             if self.url[i].isalpha():
-                if self.url[i] not in vows and self.url[i + i] not in vows:
+                if self.url[i-1] not in vows and self.url[i] not in vows:
                     counter += 1
         return counter
 
     def cons_to_vows_seq(self):
         counter, vows = 0, self.__get_vows()
-        for i in range(0, len(self.url)):
+        for i in range(1, len(self.url)):
             if self.url[i].isalpha():
-                if self.url[i] not in vows and self.url[i + i] in vows:
+                if self.url[i-1] not in vows and self.url[i] in vows:
                     counter += 1
         return counter
     ###############vows & cons FEATURES #####################

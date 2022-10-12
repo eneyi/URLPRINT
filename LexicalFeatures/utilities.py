@@ -1,5 +1,6 @@
 from urllib.parse import urlparse
 from math import log
+import logging
 
 
 class InvalidURLError(Exception):
@@ -13,6 +14,11 @@ class LexicalUtilities(object):
         self.url = url
         self.urlparse = urlparse(self.url)
 
+    '''Log Errors'''
+    def _error_logger(self, error):
+        logging.exception(error)
+
+
     '''Check if URL is Valid'''
     def _is_valid_url(self):
         c1 = self.urlparse.netloc is not None
@@ -22,7 +28,7 @@ class LexicalUtilities(object):
             return InvalidURLError()
 
     '''Get Vowels'''
-    def __get_vowels(self):
+    def __get_vows(self):
         return 'aeiouAEIOU'
 
     '''Estimate Shanon Entropy'''
