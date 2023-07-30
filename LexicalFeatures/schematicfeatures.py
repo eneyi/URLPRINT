@@ -135,25 +135,5 @@ class LexicalComponentFeature(LexicalUtilities):
     '''Run Lexical Component Feature Extractor'''
     def run(self):
         if __name__ == '__main__':
-            pool = ThreadPool(processes=16)
-            pas = [
-                pool.apply_async(self.url_path_length),
-                pool.apply_async(self.url_host_length),
-                pool.apply_async(self.len_tld),
-                pool.apply_async(self.num_parameters),
-                pool.apply_async(self.num_fragments),
-                pool.apply_async(self.num_subdirectories),
-                pool.apply_async(self.has_port_in_string),
-                pool.apply_async(self.url_scheme),
-                pool.apply_async(self.tld),
-                pool.apply_async(self.avg_path_len),
-                pool.apply_async(self.avg_param_len),
-                pool.apply_async(self.host_entropy),
-                pool.apply_async(self.path_entropy),
-                pool.apply_async(self.fragment_entropy),
-                pool.apply_async(self.parameter_entropy),
-                pool.apply_async(self.port_number)
-            ]
-            results = [i.get() for i in pas]
-            pool.terminate()
+            results = {} ### add class runner
             return results
