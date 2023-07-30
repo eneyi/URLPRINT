@@ -237,33 +237,5 @@ class LexicalSynthaticFeature(LexicalUtilities):
     '''Run Lexical Feature Extractor'''
     def run(self):
         if __name__ == '__main__':
-            pool = ThreadPool(processes=24)
-            pas = [
-                pool.apply_async(self.url_length),
-                pool.apply_async(self.cap_to_digit_ratio),
-                pool.apply_async(self.cap_to_puncs_ratio),
-                pool.apply_async(self.cons_to_cons_seq),
-                pool.apply_async(self.cons_to_digit_ratio),
-                pool.apply_async(self.cons_to_puncs_ratio),
-                pool.apply_async(self.cons_to_vows_seq),
-                pool.apply_async(self.digit_to_char_ratio),
-                pool.apply_async(self.num_cons),
-                pool.apply_async(self.num_digits),
-                pool.apply_async(self.num_encoded_char),
-                pool.apply_async(self.num_hyphens),
-                pool.apply_async(self.num_periods),
-                pool.apply_async(self.num_puncs),
-                pool.apply_async(self.num_underscore),
-                pool.apply_async(self.num_vows),
-                pool.apply_async(self.num_capitalizations),
-                pool.apply_async(self.punc_to_char_ratio),
-                pool.apply_async(self.punc_to_digit_ratio),
-                pool.apply_async(self.vows_to_cons_ratio),
-                pool.apply_async(self.vows_to_cons_seq),
-                pool.apply_async(self.vows_to_digit_ratio),
-                pool.apply_async(self.vows_to_punc_ratio),
-                pool.apply_async(self.vows_to_vows_seq)
-            ]
-            results = [i.get() for i in pas]
-            pool.terminate()
+            ### define class runner
             return results
