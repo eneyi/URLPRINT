@@ -71,16 +71,6 @@ class LexicalSemanticFeature(LexicalUtilities):
     '''Run Lexical Feature Extractor'''
     def run(self):
         if __name__ == '__main__':
-            pool = ThreadPool(processes=7)
-            pas = [
-                pool.apply_async(self.url_host_is_ip),
-                pool.apply_async(self.has_port_in_string),
-                pool.apply_async(self.is_encoded),
-                pool.apply_async(self.has_client_in_string),
-                pool.apply_async(self.has_admin_in_string),
-                pool.apply_async(self.has_server_in_string),
-                pool.apply_async(self.has_login_in_string)
-            ]
-            results = [i.get() for i in pas]
-            pool.terminate()
+            
+            #results = [i.get() for i in pas]
             return results
